@@ -18,6 +18,17 @@
     <!-- Particle Effect -->
     <div class="particles" id="particles"></div>
 
+    <!-- Overlay para el mensaje -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Mensaje de confirmación -->
+    <div class="confirmation-message" id="confirmationMessage">
+      <i class="fas fa-check-circle"></i>
+      <h3>¡Correo enviado con éxito!</h3>
+      <p>Un asesor se comunicará contigo en breve.</p>
+      <button class="btn" id="closeMessage">Aceptar</button>
+    </div>
+
     <!-- Header & Navigation -->
     <header id="header">
       <div class="container">
@@ -273,7 +284,7 @@
             tus objetivos digitales. Obtén una consultoría gratuita de 30
             minutos.
           </p>
-          <form class="cta-form">
+          <form class="cta-form" id="ctaForm">
             <input type="email" placeholder="Tu correo electrónico" required />
             <button type="submit" class="btn">Comenzar ahora</button>
           </form>

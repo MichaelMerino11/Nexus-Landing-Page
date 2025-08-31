@@ -85,6 +85,28 @@ function createParticles() {
   }
 }
 
+// NEW CODE: Handle form submission
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  // Mostrar el overlay
+  document.getElementById("overlay").style.display = "block";
+
+  // Esperar 3 segundos y luego mostrar el mensaje
+  setTimeout(function () {
+    document.getElementById("confirmationMessage").style.display = "block";
+  }, 3000);
+
+  // Opcional: Resetear el formulario
+  document.getElementById("ctaForm").reset();
+}
+
+// NEW CODE: Close the confirmation message
+function closeConfirmationMessage() {
+  document.getElementById("confirmationMessage").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
   // Observe elements for animation
@@ -141,3 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Create particle effect
   createParticles();
 });
+
+// NEW CODE: Add event listener to the form
+document.getElementById("ctaForm").addEventListener("submit", handleFormSubmit);
+
+// NEW CODE: Add event listener to close button
+document
+  .getElementById("closeMessage")
+  .addEventListener("click", closeConfirmationMessage);

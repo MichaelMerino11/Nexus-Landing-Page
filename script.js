@@ -22,9 +22,33 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         top: targetElement.offsetTop - 80,
         behavior: "smooth",
       });
+
+      // Cerrar el menú móvil después de hacer clic en un enlace
+      if (window.innerWidth <= 768) {
+        toggleMobileMenu();
+      }
     }
   });
 });
+
+// NEW CODE: Mobile menu functionality
+function toggleMobileMenu() {
+  const navLinks = document.querySelector(".nav-links");
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+  navLinks.classList.toggle("active");
+  mobileMenuBtn.classList.toggle("active");
+
+  // Cambiar el ícono del botón
+  const icon = mobileMenuBtn.querySelector("i");
+  if (navLinks.classList.contains("active")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-times");
+  } else {
+    icon.classList.remove("fa-times");
+    icon.classList.add("fa-bars");
+  }
+}
 
 // Animate elements on scroll
 const observerOptions = {
@@ -85,14 +109,14 @@ function createParticles() {
   }
 }
 
-// NEW CODE: Handle form submission
+// Handle form submission
 function handleFormSubmit(e) {
   e.preventDefault();
 
   // Mostrar el overlay
   document.getElementById("overlay").style.display = "block";
 
-  // Esperar 3 segundos y luego mostrar el mensaje
+  // Esperar 3 segundos y luego mostrar el menaje
   setTimeout(function () {
     document.getElementById("confirmationMessage").style.display = "block";
   }, 3000);
@@ -101,7 +125,7 @@ function handleFormSubmit(e) {
   document.getElementById("ctaForm").reset();
 }
 
-// NEW CODE: Close the confirmation message
+// Close the confirmation message
 function closeConfirmationMessage() {
   document.getElementById("confirmationMessage").style.display = "none";
   document.getElementById("overlay").style.display = "none";
@@ -162,12 +186,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Create particle effect
   createParticles();
+
+  // NEW CODE: Add event listener to mobile menu button
+  document
+    .querySelector(".mobile-menu-btn")
+    .addEventListener("click", toggleMobileMenu);
 });
 
-// NEW CODE: Add event listener to the form
+// Add event listener to the form
 document.getElementById("ctaForm").addEventListener("submit", handleFormSubmit);
 
-// NEW CODE: Add event listener to close button
+// Add event listener to close button
 document
   .getElementById("closeMessage")
   .addEventListener("click", closeConfirmationMessage);
